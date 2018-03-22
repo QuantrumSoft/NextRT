@@ -1,0 +1,12 @@
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\NextTest1.exe.config
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\NextTest1.exe
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\NextTest1.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\NextRT.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\OpenTK.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\NextRT.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\OpenTK.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.csprojResolveAssemblyReference.cache
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.csproj.CoreCompileInputs.cache
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.csproj.CopyComplete
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.exe
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.pdb
