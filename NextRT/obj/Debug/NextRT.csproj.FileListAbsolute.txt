@@ -9,3 +9,4 @@ C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Debug\NextRT.dll
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Debug\NextRT.pdb
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Debug\AssimpNet.dll
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Debug\AssimpNet.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Debug\Cloo.clSharp.dll
