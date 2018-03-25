@@ -57,12 +57,16 @@
     <Compile Include="Data\DataBuffer.cs" />
     <Compile Include="Data\Identity.cs" />
     <Compile Include="Data\List.cs" />
+    <Compile Include="Data\MeshData.cs" />
+    <Compile Include="Data\MeshTri.cs" />
     <Compile Include="Data\Stack.cs" />
+    <Compile Include="Data\Vertex.cs" />
     <Compile Include="Draw\Pen.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Core\NextApp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Node3D.cs" />
+    <Compile Include="Scene\NodeEntity.cs" />
     <Compile Include="Scene\SceneGraph.cs" />
     <Compile Include="Scene\SceneNode.cs" />
     <Compile Include="Tex\Tex2D.cs" />
