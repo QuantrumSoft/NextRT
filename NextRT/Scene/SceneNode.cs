@@ -8,7 +8,7 @@ namespace NextRT.Scene
 {
     public class SceneNode
     {
-        public Data.List<SceneNode> Child
+        public List<SceneNode> Child
         {
             get
             {
@@ -19,7 +19,7 @@ namespace NextRT.Scene
                 _Child = value;
             }
         }
-        public Data.List<SceneNode> _Child = new Data.List<SceneNode>();
+        public List<SceneNode> _Child = new List<SceneNode>();
 
         public Data.Identity ID
         {

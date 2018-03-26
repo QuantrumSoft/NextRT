@@ -21,6 +21,23 @@ namespace NextRT.Scene
         }
         private SceneNode _Root = new SceneNode();
 
+        public int NodeCount
+        {
+            get
+            {
+                return CountNodes(_Root,1);
+            }
+        }
+
+        public int CountNodes(SceneNode node, int nc = 0)
+        {
+            foreach(var n in node.Child)
+            {
+                nc = nc + CountNodes(n,nc);
+            }
+            return nc;
+        }
+
         public void Add(SceneNode node)
         {
 

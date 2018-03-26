@@ -18,7 +18,7 @@ namespace NextRT.Data
             get
             {
                 if (Items.Count == 0) return null;
-                return Items[Items.Count - 1];
+                return null;
             }
         }
         public TYPE GetCur()

@@ -17,7 +17,7 @@ namespace NextRT.Core
     public class NextApp : GameWindow
     {
         public static AppState StartState = null;
-        public static Data.Stack<AppState> States = new  Data.Stack<AppState>();
+        public static Stack<AppState> States = new Stack<AppState>();
         public static void PushState(AppState state)
         {
             States.Push(state);
@@ -34,22 +34,22 @@ namespace NextRT.Core
         }
         public static void PauseState()
         {
-            var s = States.Current;
+            var s = States.Last();
             if (s == null) return;
             s.Pause();
 
         }
         public static void ResumeState()
         {
-            var s = States.Current;
+            var s = States.Last();
             if (s == null) return;
             s.Resume();
         }
         ~NextApp()
         {
-            if (States.Current != null)
+            if (States.Last() != null)
             {
-                States.Current.Stop();
+                States.Last().Stop();
             }
         }
         public NextApp(int width,int height,string app,bool full) : base(width,height,OpenTK.Graphics.GraphicsMode.Default,app,full ? GameWindowFlags.Fullscreen : GameWindowFlags.FixedWindow)
@@ -59,10 +59,14 @@ namespace NextRT.Core
             Globals.AppName = app;
             Globals.FullScreen = full;
             SetupGL(width, height);
+
+            Import.EntityImport.RegisterDefaults();
+
             if (StartState != null)
             {
                 PushState(StartState);
             }
+
         }
 
         private static void SetupGL(int width, int height)
@@ -88,7 +92,7 @@ namespace NextRT.Core
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);
-            States.Current.Update();
+            States.Last().Update();
 
         }
 
@@ -96,7 +100,7 @@ namespace NextRT.Core
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-            States.Current.Render();
+            States.Last().Render();
 
             SwapBuffers();
         }

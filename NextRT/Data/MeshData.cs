@@ -51,5 +51,12 @@ namespace NextRT.Data
             _Tris = new MeshTri[tris];
         }
 
+        public void SetTri(MeshTri tri, int index)
+        {
+            _Tris[index] = tri;
+        }
+
+
+
     }
 }

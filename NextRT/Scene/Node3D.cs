@@ -9,7 +9,7 @@ namespace NextRT.Scene
     public class Node3D : SceneNode
     {
 
-        public Matrix4 WorldMatrix
+        public virtual Matrix4 WorldMatrix
         {
             get
             {
@@ -32,7 +32,7 @@ namespace NextRT.Scene
             }
         }
         
-        public Matrix4 Rotation
+        public virtual Matrix4 Rotation
         {
             get
             {
@@ -45,7 +45,7 @@ namespace NextRT.Scene
         }
         public Matrix4 _Rotation;
 
-        public Vector3 Position
+        public virtual Vector3 Position
         {
             get
             {
@@ -58,7 +58,7 @@ namespace NextRT.Scene
         }
         public Vector3 _Position = Vector3.Zero;
 
-        public Vector3 Scele
+        public virtual Vector3 Scele
         {
             get
             {
@@ -70,6 +70,32 @@ namespace NextRT.Scene
             }
         }
         public Vector3 _Scale = Vector3.One;
+
+        public void SetRotate(float pitch,float yaw,float roll=0)
+        {
+            var p = Matrix4.CreateRotationX(OpenTK.MathHelper.DegreesToRadians(pitch));
+            var y = Matrix4.CreateRotationY(MathHelper.DegreesToRadians(yaw));
+            var r = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(roll));
+
+            var fm = y * p;
+
+            _Rotation = fm;
+
+        }
+
+        public void SetPosition(float x,float y,float z)
+        {
+
+            _Position = new Vector3(x, y, z);
+
+        }
+
+        public void SetScale(float x=1,float y=1,float z = 1)
+        {
+
+            _Scale = new Vector3(x, y, z);
+
+        }
 
     }
 }
