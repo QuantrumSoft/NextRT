@@ -75,11 +75,11 @@ namespace NextRT.Core
             GL.Disable(EnableCap.AlphaTest);
             GL.Disable(EnableCap.Blend);
             GL.Disable(EnableCap.DepthTest);
-            GL.Disable(EnableCap.DepthClamp);
-            GL.Disable(EnableCap.ScissorTest);
+       //     GL.Disable(EnableCap.DepthClamp);
+        //    GL.Disable(EnableCap.ScissorTest);
 
             GL.Viewport(0, 0, width, height);
-            GL.ClearColor(0.5f, 0.5f, 0.5f, 0.0f);
+            GL.ClearColor(0,0,0, 0.0f);
             Draw.Pen.Begin2D();
 
         }

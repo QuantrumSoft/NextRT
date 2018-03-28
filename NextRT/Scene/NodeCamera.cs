@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenTK;
+using System.Drawing;
 
 namespace NextRT.Scene
 {
@@ -18,7 +19,7 @@ namespace NextRT.Scene
             }
         }
 
-        public Vector4 Viewport
+        public Rectangle Viewport
         {
             get
             {
@@ -29,7 +30,7 @@ namespace NextRT.Scene
                 _Viewport = value;
             }
         }
-        public Vector4 _Viewport = new Vector4(0, 0, Core.Globals.WinWidth, Core.Globals.WinHeight);
+        public Rectangle _Viewport = new Rectangle(0, 0, Core.Globals.WinWidth, Core.Globals.WinHeight);
 
         public float RenderMinZ
         {

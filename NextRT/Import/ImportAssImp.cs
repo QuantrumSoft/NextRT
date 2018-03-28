@@ -105,8 +105,10 @@ namespace NextRT.Import
 
             root.Meshes = lm;
 
-            ParseNode(scene.RootNode,root);
+               
+            ParseNode(scene.RootNode,root,1);
 
+            
 
             return root;
 
@@ -117,13 +119,13 @@ namespace NextRT.Import
         List<MeshData> MD = new List<MeshData>();
 
 
-        public void ParseNode(Node node,NodeEntity rnode)
+        public void ParseNode(Node node,NodeEntity rnode,int na=1)
         {
-            Console.WriteLine("Node:" + node.Name);
+            Console.WriteLine("Node:" + node.Name+" NC:"+na);
 
             var nm = node.Transform;
 
-            
+            rnode.Name = node.Name;
 
             if (node.HasMeshes)
             {
@@ -141,7 +143,7 @@ namespace NextRT.Import
                 nn.Root = rnode;
                 rnode.Add(nn);
 
-                ParseNode(cn,nn);
+                ParseNode(cn,nn,na+1);
             }
         }
     }

@@ -43,7 +43,7 @@ namespace NextRT.Scene
                 _Rotation = value;
             }
         }
-        public Matrix4 _Rotation;
+        public Matrix4 _Rotation = Matrix4.Identity;
 
         public virtual Vector3 Position
         {

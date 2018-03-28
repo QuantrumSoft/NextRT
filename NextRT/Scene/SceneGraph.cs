@@ -25,17 +25,23 @@ namespace NextRT.Scene
         {
             get
             {
-                return CountNodes(_Root,1);
+                _NC = 0;
+                CountNodes(_Root._Child[0]);
+                return _NC;
             }
         }
-
-        public int CountNodes(SceneNode node, int nc = 0)
+        public int _NC = 0;
+        public void CountNodes(SceneNode node)
         {
+            _NC++;
+           // Console.WriteLine("NODE:" + node.Name + " C:" + _NC);
+            //Console.WriteLine("Node:" + node.Name + " NC:" + nc);
             foreach(var n in node.Child)
             {
-                nc = nc + CountNodes(n,nc);
+                CountNodes(n);
+              //  nc = nc + CountNodes(n,nc);
             }
-            return nc;
+            
         }
 
         public void Add(SceneNode node)

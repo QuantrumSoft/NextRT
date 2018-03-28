@@ -29,6 +29,9 @@ namespace NextTest1
             Ent1 = EntityImport.Import("dat/3d/TestScene1.3ds");
             Cam1 = new NodeCamera();
             Ren1 = new SimpleRenderer();
+
+            Scene1.Add(Ent1);
+
             Ren1.Scene = Scene1;
             Ren1.AddCam(Cam1);
 
@@ -41,8 +44,8 @@ namespace NextTest1
         {
             base.Render();
 
-            Pen.Rect(20, 20, 200, 200, new NextRT.Material.Color(1, 1, 1, 1));
-            Pen.Image(20, 200, 200, 200, new NextRT.Material.Color(1, 1, 1, 1), Tex1);
+            Ren1.Render();
+
         }
         public override void Update()
         {
