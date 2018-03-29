@@ -1,0 +1,15 @@
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\NextTest1.exe.config
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\NextTest1.exe
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\NextTest1.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\NextRT.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\OpenTK.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\AssimpNet.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\Cloo.clSharp.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\NextRT.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\OpenTK.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Release\AssimpNet.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Release\NextTest1.csprojResolveAssemblyReference.cache
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Release\NextTest1.csproj.CoreCompileInputs.cache
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Release\NextTest1.csproj.CopyComplete
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Release\NextTest1.exe
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Release\NextTest1.pdb

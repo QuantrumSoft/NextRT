@@ -1,0 +1,11 @@
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\NextRT.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\NextRT.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\AssimpNet.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\Cloo.clSharp.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\OpenTK.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\AssimpNet.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\bin\Release\OpenTK.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.csproj.CoreCompileInputs.cache
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.csproj.CopyComplete
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.dll
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.pdb

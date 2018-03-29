@@ -95,13 +95,19 @@ namespace NextRT.Scene
 
         }
 
+        public Vector3 Transform(float x,float y,float z)
+        {
+            Vector3 m = new Vector3(x, y, z);
+            var nm = Vector3.TransformPosition(m, _Rotation);
+            return nm;
+        }
         public void SetRotate(float pitch,float yaw,float roll=0)
         {
             var p = Matrix4.CreateRotationX(OpenTK.MathHelper.DegreesToRadians(pitch));
             var y = Matrix4.CreateRotationY(MathHelper.DegreesToRadians(yaw));
             var r = Matrix4.CreateRotationZ(MathHelper.DegreesToRadians(roll));
 
-            var fm = y * p;
+            var fm = y * p * r;
 
             _Rotation = fm;
 

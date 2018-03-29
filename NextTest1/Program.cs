@@ -18,7 +18,7 @@ namespace NextTest1
         public SceneGraph Scene1;
         public NodeEntity Ent1;
         public NodeCamera Cam1;
-        public SimpleRenderer Ren1;
+        public RayTraceRenderer Ren1;
         public override void Start()
         {
 
@@ -28,7 +28,7 @@ namespace NextTest1
             Scene1 = new SceneGraph();
             Ent1 = EntityImport.Import("dat/3d/tt4.3ds");
             Cam1 = new NodeCamera();
-            Ren1 = new SimpleRenderer();
+            Ren1 = new RayTraceRenderer();
 //            Ren1.Sync();
 
             Scene1.Add(Ent1);
@@ -36,10 +36,12 @@ namespace NextTest1
             Ren1.Scene = Scene1;
             Ren1.AddCam(Cam1);
             Cam1.Position = new OpenTK.Vector3(0, 5, 540);
-           // Cam1.LookAt(0, 0, 0);
+
+            // Cam1.LookAt(0, 0, 0);
             //Cam1.Position = new OpenTK.Vector3(0, 5, -240);
             // Cam1.SetRotate(0, 0, 0);
-        //    Ent1.Child.Add(Ent1.Child[0]);
+            //    Ent1.Child.Add(Ent1.Child[0]);
+            Ent1.SetRotate(0,0, 90);
            
             var Mat1 = new NextRT.Material.Material();
             Mat1.Diffuse = new TexGL(new Tex2D("dat/test1.png"));
@@ -66,11 +68,14 @@ namespace NextTest1
         float x = 0, y = 0;
         public override void Update()
         {
-            y = y + NextRT.Inputs.Input.MXD;
-            x = x + NextRT.Inputs.Input.MYD;
-           Cam1.SetRotate(x,y, 0);
-            NextRT.Inputs.Input.MXD = 0;
-            NextRT.Inputs.Input.MYD = 0;
+            if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.Space))
+            {
+                y = y + NextRT.Inputs.Input.MXD;
+                x = x + NextRT.Inputs.Input.MYD;
+                Cam1.SetRotate(x, y, 0);
+                NextRT.Inputs.Input.MXD = 0;
+                NextRT.Inputs.Input.MYD = 0;
+            }
             if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.W))
             {
                 Cam1.Move(0, 0, -3);
