@@ -10,7 +10,7 @@ namespace NextRT.Render
 {
     public class SimpleRenderer : SceneRenderer
     {
-
+        public PostProcessing.Process.PPInvert Invert;
         NodeCamera _cam = null;
         public override void Render()
         {
@@ -22,8 +22,12 @@ namespace NextRT.Render
           
               
             }
+            Invert.Render();
         }
-
+        public override void Sync()
+        {
+            Invert = new PostProcessing.Process.PPInvert();
+        }
         public void RenderNode(SceneNode node)
         {
            // Console.WriteLine("RenderNode:" + node);
@@ -88,7 +92,7 @@ namespace NextRT.Render
                 }
 
 
-
+          
                 //   Console.WriteLine("Rendering:" + ent.Name);
 
             }
@@ -97,6 +101,7 @@ namespace NextRT.Render
                 RenderNode(node2);
             }
         }
+       
 
     }
 }

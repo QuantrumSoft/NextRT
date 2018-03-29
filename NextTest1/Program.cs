@@ -29,6 +29,7 @@ namespace NextTest1
             Ent1 = EntityImport.Import("dat/3d/tt4.3ds");
             Cam1 = new NodeCamera();
             Ren1 = new SimpleRenderer();
+//            Ren1.Sync();
 
             Scene1.Add(Ent1);
 

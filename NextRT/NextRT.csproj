@@ -53,6 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compute\ComBuffer.cs" />
+    <Compile Include="Compute\ComEvents.cs" />
+    <Compile Include="Compute\ComKern.cs" />
+    <Compile Include="Compute\ComProg.cs" />
     <Compile Include="Compute\Computer.cs" />
     <Compile Include="Core\AppState.cs" />
     <Compile Include="Data\DataBuffer.cs" />
@@ -69,6 +73,8 @@
     <Compile Include="Material\Color.cs" />
     <Compile Include="Core\NextApp.cs" />
     <Compile Include="Material\Material.cs" />
+    <Compile Include="PostProcessing\PostProcess.cs" />
+    <Compile Include="PostProcessing\Process\PPInvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Render\RayTraceRenderer.cs" />
     <Compile Include="Render\SceneRenderer.cs" />

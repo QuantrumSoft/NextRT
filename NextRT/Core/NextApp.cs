@@ -65,11 +65,13 @@ namespace NextRT.Core
 
             Import.EntityImport.RegisterDefaults();
 
+            Com = new Compute.Computer();
+
             if (StartState != null)
             {
                 PushState(StartState);
             }
-            Com = new Compute.Computer();
+          
         }
 
         private static void SetupGL(int width, int height)

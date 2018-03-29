@@ -75,7 +75,9 @@ namespace NextRT.Tex
             IT = new Tex2D(w, h, false);
 
             GenGL();
-
+            GL.PixelStore(PixelStoreParameter.PackAlignment, 3);
+            GL.PixelStore(PixelStoreParameter.UnpackAlignment, 3);
+          //  GL.PixelTransfer(PixelTransferParameter.MapColor, 1);
         }
             
         public void Bind(int unit)
@@ -89,8 +91,8 @@ namespace NextRT.Tex
        
         public void Release(int unit)
         {
-            GL.ActiveTexture(TextureUnit.Texture0 + unit);
-            GL.ClientActiveTexture(TextureUnit.Texture0 + unit);
+           GL.ActiveTexture(TextureUnit.Texture0 + unit);
+           GL.ClientActiveTexture(TextureUnit.Texture0 + unit);
             GL.Disable(EnableCap.Texture2D);
             GL.BindTexture(TextureTarget.Texture2D, 0);
 
@@ -109,6 +111,8 @@ namespace NextRT.Tex
             GL.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, ref tpi);
 
             tpi = (int)TextureMagFilter.Nearest;
+            //GL.TexParameterI(TextureTarget.Texture2D,TextureParameterName.GenerateMipmap,GenerateMipmapTarget.)
+
 
             GL.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, ref tpi);
             tpi = (int)TextureMinFilter.Nearest;
