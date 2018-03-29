@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compute\Computer.cs" />
     <Compile Include="Core\AppState.cs" />
     <Compile Include="Data\DataBuffer.cs" />
     <Compile Include="Data\Identity.cs" />
@@ -63,11 +64,13 @@
     <Compile Include="Import\ImportAssImp.cs" />
     <Compile Include="Import\Importer.cs" />
     <Compile Include="Import\NodeImport.cs" />
+    <Compile Include="Input\Input.cs" />
     <Compile Include="Map\AppMap.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Core\NextApp.cs" />
     <Compile Include="Material\Material.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render\RayTraceRenderer.cs" />
     <Compile Include="Render\SceneRenderer.cs" />
     <Compile Include="Render\SimpleRenderer.cs" />
     <Compile Include="Scene\Node3D.cs" />

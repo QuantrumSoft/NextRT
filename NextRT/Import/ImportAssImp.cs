@@ -58,18 +58,24 @@ namespace NextRT.Import
                     mv.NY = m.Normals[vi].Y;
                     mv.NZ = m.Normals[vi].Z;
 
-                    mv.U = m.TextureCoordinateChannels[0][vi].X;
-                    mv.V = m.TextureCoordinateChannels[0][vi].Y;
-                    mv.W = m.TextureCoordinateChannels[0][vi].Z;
+                    if (m.TextureCoordinateChannels[0].Count() > 0)
+                    {
+                        mv.U = m.TextureCoordinateChannels[0][vi].X;
+                        mv.V = m.TextureCoordinateChannels[0][vi].Y;
+                        mv.W = m.TextureCoordinateChannels[0][vi].Z;
+                    }
 
-                    mv.BIX = m.BiTangents[vi].X;
-                    mv.BIY = m.BiTangents[vi].Y;
-                    mv.BIZ = m.BiTangents[vi].Z;
+                    if (m.BiTangents.Count() > 0)
+                    {
+                        mv.BIX = m.BiTangents[vi].X;
+                        mv.BIY = m.BiTangents[vi].Y;
+                        mv.BIZ = m.BiTangents[vi].Z;
 
-                    mv.TX = m.Tangents[vi].X;
-                    mv.TY = m.Tangents[vi].Y;
-                    mv.TZ = m.Tangents[vi].Z;
+                        mv.TX = m.Tangents[vi].X;
+                        mv.TY = m.Tangents[vi].Y;
+                        mv.TZ = m.Tangents[vi].Z;
 
+                    }
                     if (m.HasVertexColors(0))
                     {
 
@@ -124,6 +130,37 @@ namespace NextRT.Import
             Console.WriteLine("Node:" + node.Name+" NC:"+na);
 
             var nm = node.Transform;
+            //var rm = new Matrix4x4(nm.A1, nm.A2, nm.A3, nm.A4, nm.B1, nm.B2, nm.B3, nm.B4, nm.C1, nm.C2, nm.C3, nm.C4, nm.D1, nm.D2, nm.D3, nm.D4);
+
+            //var em = new OpenTK.Matrix4(nm.A1, nm.A2, nm.A3, nm.A4, nm.B1, nm.B2, nm.B3, nm.B4, nm.C1, nm.C2, nm.C3, nm.C4, nm.D1, nm.D2, nm.D3, nm.D4);
+            var em = new OpenTK.Matrix4(nm.A1, nm.B1, nm.C1, nm.D1, nm.A2, nm.B2, nm.C2, nm.D2, nm.A3, nm.B3, nm.C3, nm.D3, nm.A4, nm.B4, nm.C4, nm.D4);
+            //em = new OpenTK.Matrix4(nm.A1, nm.A2, nm.A3, nm.A4, nm.B1, nm.B2, nm.B3, nm.B4, nm.C1, nm.C2, nm.C3, nm.C4, nm.D1, nm.D2, nm.D3, nm.D4);
+
+            var em2 = em;
+
+
+            em.ClearTranslation();
+            em.ClearScale();
+
+        //    em2.ClearRotation();
+      //      em2.ClearScale();
+
+            rnode.Rotation = em;
+            rnode.Position = em2.ExtractTranslation();
+            float z = rnode.Position.Z;
+            var pv = rnode.Position;
+            //pv.Z = rnode.Position.Y;
+            //pv.Y = z;
+
+            rnode.Position = pv;
+
+            //Vector3D scal = Vector3D., pos;
+           // Quaternion rot;
+
+
+            
+
+
 
             rnode.Name = node.Name;
 

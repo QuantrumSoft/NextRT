@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using NextRT.Data;
+using OpenTK.Input;
+
 namespace NextRT.Core
 {
     public static class Globals
@@ -18,6 +20,7 @@ namespace NextRT.Core
     {
         public static AppState StartState = null;
         public static Stack<AppState> States = new Stack<AppState>();
+        public Compute.Computer Com = null;
         public static void PushState(AppState state)
         {
             States.Push(state);
@@ -66,7 +69,7 @@ namespace NextRT.Core
             {
                 PushState(StartState);
             }
-
+            Com = new Compute.Computer();
         }
 
         private static void SetupGL(int width, int height)
@@ -91,6 +94,14 @@ namespace NextRT.Core
             SetupGL(Globals.WinWidth, Globals.WinHeight);
         }
 
+        protected override void OnMouseMove(MouseMoveEventArgs e)
+        {
+            Inputs.Input.MX = e.X;
+            Inputs.Input.MY = e.Y;
+            Inputs.Input.MXD = e.XDelta;
+            Inputs.Input.MYD = e.YDelta;
+            
+        }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
             base.OnUpdateFrame(e);

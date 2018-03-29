@@ -21,13 +21,16 @@ namespace NextRT.Scene
                     {
      
                         var nr = _Root as Node3D;
-                        bm = bm * nr.WorldMatrix;
+                        bm = nr.WorldMatrix * bm;
                     }
                 }
 
                 bm = bm * _Rotation;
                 bm = bm * Matrix4.CreateTranslation(_Position);
+                //bm = bm * _Rotation;
 
+
+                
                 return bm;
 
             }
@@ -44,7 +47,7 @@ namespace NextRT.Scene
                 _Rotation = value;
             }
         }
-        public Matrix4 _Rotation = Matrix4.RotateX(0);
+        public Matrix4 _Rotation = Matrix4.Identity;
 
         public virtual Vector3 Position
         {
@@ -74,7 +77,7 @@ namespace NextRT.Scene
 
         public void LookAt(Vector3 pos)
         {
-            _Rotation = Matrix4.LookAt(Vector3.Zero, pos - _Position, Vector3.UnitY);
+            _Rotation = Matrix4.LookAt(Vector3.Zero,( pos - _Position), Vector3.UnitY);
         }
 
         public void LookAt(float x,float y,float z)

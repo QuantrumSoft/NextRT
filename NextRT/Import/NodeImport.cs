@@ -15,6 +15,7 @@ namespace NextRT.Import
         public static void RegisterDefaults()
         {
             Register(new ImportAssImp(), ".3ds");
+            Register(new ImportAssImp(), ".fbx");
         }
 
         public static void Register(Importer imp,string ext)

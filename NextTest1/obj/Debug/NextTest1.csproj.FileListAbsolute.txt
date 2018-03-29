@@ -12,3 +12,4 @@ C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.exe
 C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\obj\Debug\NextTest1.pdb
 C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\AssimpNet.dll
 C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\AssimpNet.xml
+C:\NextRT\Proj\Git\NextRT\NextRT\NextTest1\bin\Debug\Cloo.clSharp.dll

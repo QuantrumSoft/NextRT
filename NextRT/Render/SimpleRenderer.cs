@@ -37,14 +37,13 @@ namespace NextRT.Render
 
                 var cm = _cam.WorldMatrix;
 
-
-                mat = cm * mat;
+                mat = mat * cm;
 
                 GL.MatrixMode(MatrixMode.Projection);
                 GL.LoadIdentity();
                 var pm = Matrix4.CreatePerspectiveOffCenter(_cam.Viewport.X, _cam.Viewport.X+_cam.Viewport.Width, _cam.Viewport.Y+_cam.Viewport.Height,_cam.Viewport.Y, _cam.RenderMinZ, _cam.RenderMaxZ);
                 // GL.Viewport(_cam.Viewport.X, _cam.Viewport.Y, _cam.Viewport.Width, _cam.Viewport.Height);
-                pm = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), (float)Core.Globals.WinWidth / (float)Core.Globals.WinHeight,0.1f, 800.0f);
+                pm = Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), (float)Core.Globals.WinWidth / (float)Core.Globals.WinHeight,0.1f, 8000.0f);
                 GL.MultMatrix(ref pm);
 
                 
@@ -52,7 +51,7 @@ namespace NextRT.Render
                 GL.LoadIdentity();
                 GL.MultMatrix(ref mat);
                 GL.Disable(EnableCap.Texture2D);
-                
+                GL.Enable(EnableCap.DepthTest);
 
                 GL.Viewport(0, 0, Core.Globals.WinWidth, Core.Globals.WinHeight);
 
