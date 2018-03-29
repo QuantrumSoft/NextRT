@@ -103,12 +103,12 @@ namespace NextRT.Import
 
             }
 
-            root.Meshes = lm;
-
+            //  root.Meshes = lm;
+            root.AllMeshes = lm;
                
             ParseNode(scene.RootNode,root,1);
 
-            
+            //root = root.Child[0] as NodeEntity;
 
             return root;
 

@@ -22,8 +22,18 @@ namespace NextRT.Scene
         }
         public List<MeshData> _Meshes = new List<MeshData>();
 
-
-
+        public List<MeshData> AllMeshes
+        {
+            get
+            {
+                return _AllMeshes;
+            }
+            set
+            {
+                _AllMeshes = value;
+            }
+        }
+        public List<MeshData> _AllMeshes = new List<MeshData>();
 
     }
 }

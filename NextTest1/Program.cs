@@ -23,8 +23,8 @@ namespace NextTest1
         {
 
             base.Start();
-            Tex1 = new TexGL(new Tex2D("dat/test1.png"));
-            Console.WriteLine("TexW:" + Tex1.IT.W + " TexH:" + Tex1.IT.H);
+           // Tex1 = new TexGL(new Tex2D("dat/test1.png"));
+         //   Console.WriteLine("TexW:" + Tex1.IT.W + " TexH:" + Tex1.IT.H);
             Scene1 = new SceneGraph();
             Ent1 = EntityImport.Import("dat/3d/TestScene1.3ds");
             Cam1 = new NodeCamera();
@@ -34,6 +34,17 @@ namespace NextTest1
 
             Ren1.Scene = Scene1;
             Ren1.AddCam(Cam1);
+            Cam1.Position = new OpenTK.Vector3(0, 5, 120);
+            Cam1.LookAt(0, 0, 0);
+
+            var Mat1 = new NextRT.Material.Material();
+            Mat1.Diffuse = new TexGL(new Tex2D("dat/test1.png"));
+
+            foreach(var msh in Ent1.AllMeshes)
+            {
+                msh.Mat = Mat1;
+            }
+            
 
         }
         public override void Stop()
@@ -46,9 +57,15 @@ namespace NextTest1
 
             Ren1.Render();
 
+            Console.WriteLine("ren.");
+
         }
+        float y = 0;
         public override void Update()
         {
+            y++;
+            Ent1.SetRotate(0, y, 0);
+           // Cam1.SetRotate(0, y, 0);
         //    Console.WriteLine("State updating.");
             base.Update();
         }

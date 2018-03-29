@@ -75,12 +75,14 @@ namespace NextRT.Core
             GL.Disable(EnableCap.AlphaTest);
             GL.Disable(EnableCap.Blend);
             GL.Disable(EnableCap.DepthTest);
-       //     GL.Disable(EnableCap.DepthClamp);
-        //    GL.Disable(EnableCap.ScissorTest);
-
+                GL.Disable(EnableCap.DepthClamp);
+                GL.Disable(EnableCap.ScissorTest);
+            GL.Disable(EnableCap.CullFace);
+            GL.Disable(EnableCap.StencilTest);
+            GL.DepthRange(0, 1);
             GL.Viewport(0, 0, width, height);
             GL.ClearColor(0,0,0, 0.0f);
-            Draw.Pen.Begin2D();
+           // Draw.Pen.Begin2D();
 
         }
 
@@ -95,9 +97,11 @@ namespace NextRT.Core
             States.Last().Update();
 
         }
-
+        float y = 0;
         protected override void OnRenderFrame(FrameEventArgs e)
         {
+            y++;
+            
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             States.Last().Render();

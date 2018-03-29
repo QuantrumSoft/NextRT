@@ -56,7 +56,18 @@ namespace NextRT.Data
             _Tris[index] = tri;
         }
 
-
+        public Material.Material Mat
+        {
+            get
+            {
+                return _Mat;
+            }
+            set
+            {
+                _Mat = value;
+            }
+        }
+        public Material.Material _Mat = new Material.Material();
 
     }
 }

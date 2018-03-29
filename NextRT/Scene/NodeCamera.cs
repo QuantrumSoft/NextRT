@@ -43,7 +43,7 @@ namespace NextRT.Scene
                 _RenderMinZ = value;
             }
         }
-        public float _RenderMinZ = 0.1f;
+        public float _RenderMinZ = 0.01f;
 
 
         public float RenderMaxZ
