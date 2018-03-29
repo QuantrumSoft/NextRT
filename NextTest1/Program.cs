@@ -68,9 +68,25 @@ namespace NextTest1
         {
             y = y + NextRT.Inputs.Input.MXD;
             x = x + NextRT.Inputs.Input.MYD;
-           Ent1.SetRotate(x,y, 0);
+           Cam1.SetRotate(x,y, 0);
             NextRT.Inputs.Input.MXD = 0;
             NextRT.Inputs.Input.MYD = 0;
+            if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.W))
+            {
+                Cam1.Move(0, 0, -3);
+            }
+            if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.A))
+            {
+                Cam1.Move(-3, 0, 0);
+            }
+            if(NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.D))
+            {
+                Cam1.Move(3, 0, 0);
+            }
+            if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.S))
+            {
+                Cam1.Move(0, 0, 3);
+            }
             //Cam1.SetRotate(0, y, 0);
         //    Console.WriteLine("State updating.");
             base.Update();

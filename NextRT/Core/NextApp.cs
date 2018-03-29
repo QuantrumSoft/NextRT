@@ -95,7 +95,25 @@ namespace NextRT.Core
         {
             SetupGL(Globals.WinWidth, Globals.WinHeight);
         }
+        protected override void OnKeyDown(KeyboardKeyEventArgs e)
+        {
+            //base.OnKeyDown(e);
+            if (Inputs.Input.Keys.ContainsKey(e.Key) == false)
+            {
+                Inputs.Input.Keys.Add(e.Key, true);
+            }
+            Inputs.Input.Keys[e.Key] = true;
+        }
+        protected override void OnKeyUp(KeyboardKeyEventArgs e)
+        {
+            //base.OnKeyUp(e);
+            if (Inputs.Input.Keys.ContainsKey(e.Key) == false)
+            {
+                Inputs.Input.Keys.Add(e.Key, false);
+            }
+            Inputs.Input.Keys[e.Key] = false;
 
+        }
         protected override void OnMouseMove(MouseMoveEventArgs e)
         {
             Inputs.Input.MX = e.X;

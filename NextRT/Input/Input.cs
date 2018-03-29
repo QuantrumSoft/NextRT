@@ -40,5 +40,17 @@ namespace NextRT.Inputs
             set;
         }
         public static bool[] But = new bool[32];
+
+        public static Dictionary<OpenTK.Input.Key, bool> Keys = new Dictionary<OpenTK.Input.Key, bool>();
+        
+        public static bool KeyIn(OpenTK.Input.Key key)
+        {
+            if (Keys.ContainsKey(key) == false)
+            {
+                return false;
+            }
+            return Keys[key];
+        }
+
     }
 }
