@@ -83,8 +83,8 @@ namespace NextRT.Render
 
             var cam = Cams[0];
 
-            float bw = 200.0f;
-            float bh = 100.0f;
+            float bw = 140.0f;
+            float bh = 80.0f;
 
             float mx, my, mz;
 

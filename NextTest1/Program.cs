@@ -35,7 +35,7 @@ namespace NextTest1
 
             Ren1.Scene = Scene1;
             Ren1.AddCam(Cam1);
-            Cam1.Position = new OpenTK.Vector3(0, 5, 500);
+            Cam1.Position = new OpenTK.Vector3(0, 0,100);
 
             Cam1.LookAt(0, 0, 0);
             //Cam1.Position = new OpenTK.Vector3(0, 5, -240);

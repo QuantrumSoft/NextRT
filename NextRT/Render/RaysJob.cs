@@ -33,9 +33,9 @@ namespace NextRT.Render
                 
 
                 OpenTK.Vector3 fv = -OpenTK.Vector3.TransformPosition(pv, cm);
-                RayData[ai+ 3] = fv.X;
-                RayData[ai + 4] = fv.Y;
-                RayData[ai + 5] = fv.Z;
+                RayData[ai+ 3] = rayS.X+fv.X;
+                RayData[ai + 4] = rayS.Y+fv.Y;
+                RayData[ai + 5] = rayS.Z+fv.Z;
 
                              
 
