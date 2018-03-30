@@ -37,7 +37,7 @@ namespace NextTest1
             Ren1.AddCam(Cam1);
             Cam1.Position = new OpenTK.Vector3(0, 5, 500);
 
-            // Cam1.LookAt(0, 0, 0);
+            Cam1.LookAt(0, 0, 0);
             //Cam1.Position = new OpenTK.Vector3(0, 5, -240);
             // Cam1.SetRotate(0, 0, 0);
             //    Ent1.Child.Add(Ent1.Child[0]);
@@ -68,11 +68,22 @@ namespace NextTest1
         float x = 0, y = 0;
         public override void Update()
         {
+           // y = y + 2;
+            //Ent1.SetRotate(y, y, 0);
+            if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.Enter))
+            {
+                Cam1.LookAt(0, 0, 0);
+            }
             if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.Space))
             {
                 y = y + NextRT.Inputs.Input.MXD;
                 x = x + NextRT.Inputs.Input.MYD;
                 Cam1.SetRotate(x, y, 0);
+                NextRT.Inputs.Input.MXD = 0;
+                NextRT.Inputs.Input.MYD = 0;
+            }
+            else
+            {
                 NextRT.Inputs.Input.MXD = 0;
                 NextRT.Inputs.Input.MYD = 0;
             }
@@ -90,7 +101,7 @@ namespace NextTest1
             }
             if (NextRT.Inputs.Input.KeyIn(OpenTK.Input.Key.S))
             {
-                Cam1.Move(0, 0, 3);
+                Cam1.Move(0, 0, 6 );
             }
             //Cam1.SetRotate(0, y, 0);
         //    Console.WriteLine("State updating.");
@@ -100,7 +111,7 @@ namespace NextTest1
     }
     public class TestApp1 : NextApp
     {
-        public TestApp1() : base(640,480,"NextRT TestApp 1",false)
+        public TestApp1() : base(800,600,"NextRT TestApp 1",false)
         {
 
         }
@@ -112,7 +123,7 @@ namespace NextTest1
             NextApp.StartState = new State1();
             var app = new TestApp1();
 
-            app.Run(30, 195);
+            app.Run();
 
         }
     }

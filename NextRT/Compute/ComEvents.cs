@@ -50,6 +50,8 @@ namespace NextRT.Compute
 
             //Queue.Wait(List);
             Queue.Finish();
+            List.Clear();
+            
             //List.Wait();
             //List.Clear();
             //Queue.Finish();

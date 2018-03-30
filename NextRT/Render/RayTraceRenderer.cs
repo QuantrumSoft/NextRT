@@ -72,7 +72,7 @@ namespace NextRT.Render
                 ProcessNode(nc);
             }
         }
-        public int ThreadCount = 8;
+        public int ThreadCount = 2;
 
         public Job.JobControl JC = new Job.JobControl();
         public void SetupRays()
@@ -214,10 +214,17 @@ namespace NextRT.Render
             RenKern.Kern.SetValueArgument<int>(3, 2000);
             RenKern.SetFloat(4, RenOut);
         }
+        long rc = 0;
         public override void Render()
         {
 
             JC.Update();
+            var ren = false;
+            if (JC.Rounds > rc)
+            {
+                rc = JC.Rounds;
+                ren = true;
+            }
             //Console.WriteLine("Rounds:" + JC.Rounds);
             if (!initdone)
             {
@@ -228,26 +235,31 @@ namespace NextRT.Render
             //RenKern.Kern.
 
             // RenRays.Buf.Dispose();
-            RenEvents.WriteFloat(RenRays, ref RaysJob.RayData);     
-  //         RenRays = new ComBuffer<float>(true, true, RayCount * 6, ref RayData);
-           RenKern.SetFloat(0, RenRays);
-
-           RenEvents.Run(RenKern, RayCount);
-            RenEvents.Wait();
-            RenEvents.ReadFloat(RenOut, ref RenTex);
-
-
-
-
-
-
-            if (Frame == null) 
+            if (ren)
             {
-              Frame = new Tex.TexGL(Core.Globals.WinWidth, Core.Globals.WinHeight,ref RenTex);
+                RenEvents.WriteFloat(RenRays, ref RaysJob.RayData);
+                //         RenRays = new ComBuffer<float>(true, true, RayCount * 6, ref RayData);
+                RenKern.SetFloat(0, RenRays);
+
+                RenEvents.Run(RenKern, RayCount);
+                RenEvents.Wait();
+                RenEvents.ReadFloat(RenOut, ref RenTex);
             }
-            else
+
+
+
+
+
+            if (ren)
             {
+                if (Frame == null)
+                {
+                    Frame = new Tex.TexGL(Core.Globals.WinWidth, Core.Globals.WinHeight, ref RenTex);
+                }
+                else
+                {
                     Frame.Upload(ref RenTex);
+                }
             }
             Draw.Pen.Begin2D();
             Draw.Pen.Image(0, 0, Core.Globals.WinWidth,Core.Globals.WinHeight, new Material.Color(1, 1, 1, 1), Frame);
