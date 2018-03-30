@@ -9,3 +9,4 @@ C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.csproj.CoreCompileInp
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.csproj.CopyComplete
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.dll
 C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.pdb
+C:\NextRT\Proj\Git\NextRT\NextRT\NextRT\obj\Release\NextRT.csprojResolveAssemblyReference.cache

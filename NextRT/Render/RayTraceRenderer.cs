@@ -50,9 +50,9 @@ namespace NextRT.Render
                             OpenTK.Vector3 nv = ent.Transform(v.X, v.Y, v.Z);
                             
 
-                            MeshData.Add(nv.X);
-                            MeshData.Add(nv.Y);
-                            MeshData.Add(nv.Z);
+                            MeshData.Add(v.X);
+                            MeshData.Add(v.Y);
+                            MeshData.Add(v.Z);
 
                             v = new OpenTK.Vector3(tri.Vertices[i].NX, tri.Vertices[i].NY, tri.Vertices[i].NZ);
 
@@ -62,8 +62,8 @@ namespace NextRT.Render
                             MeshData.Add(nv.Y);
                             MeshData.Add(nv.Z);
                         }
-                        MeshData.Add(1.0f);//Trans
-                        MeshData.Add(0.4f);//Reflect
+                      //  MeshData.Add(1.0f);//Trans
+                     //   MeshData.Add(0.4f);//Reflect
                     }
                 }
             }
@@ -76,8 +76,8 @@ namespace NextRT.Render
         {
             var cam = Cams[0];
 
-            float bw = 2.0f;
-            float bh = 1.0f;
+            float bw = 200.0f;
+            float bh = 100.0f;
 
             float mx, my, mz;
 
@@ -90,24 +90,24 @@ namespace NextRT.Render
             {
                 for(float x = 0; x < Core.Globals.WinWidth; x++)
                 {
-                    float xf = x / Core.Globals.WinWidth;
-                    float yf = y / Core.Globals.WinHeight;
+                    float xf = x / (float)Core.Globals.WinWidth;
+                    float yf = y / (float)Core.Globals.WinHeight;
                     xf = -1 + xf * 2.0f;
-                    yf = -1 * yf * 2.0f;
-                    float ax = (-bw + (bw * 2)) * xf;
-                    float ay = (-bh + (bh * 2)) * yf;
-
+                    yf = -1 + yf * 2.0f;
+                    float ax = (bw * xf);
+                    float ay = (bh * yf);
+                  //  Console.WriteLine("XF:" + xf + " YF:" + yf);
                     OpenTK.Vector3 rayS = cam.Transform(ax, ay, 0);
-
-                    RayData[ray] = rayS.X;
-                    RayData[ray + 1] = rayS.Y;
-                    RayData[ray + 2] = rayS.Z;
-
+                //  Console.WriteLine("ax:" + ax + " aY:" + ay);
+                    RayData[ray] = cam.Position.X+rayS.X;
+                    RayData[ray + 1] = cam.Position.Y+rayS.Y;
+                    RayData[ray + 2] = cam.Position.Z+rayS.Z;
+                   // Console.WriteLine("RX:" + RayData[ray] + " RY:" + RayData[ray + 1] + " RZ:" + RayData[ray + 2]);
                     float fx, fy, fz;
-                    OpenTK.Vector3 fv = cam.Transform(0, 0, 1000);
+                    OpenTK.Vector3 fv = -cam.Transform(0, 0, 500);
 
                     RayData[ray + 3] = fv.X;
-                    RayData[ray + 4] = fv.Y;
+                       RayData[ray + 4] = fv.Y;
                     RayData[ray + 5] = fv.Z;
 
 
@@ -143,7 +143,8 @@ namespace NextRT.Render
             RenKern.SetFloat(0, RenRays);
             RenKern.Kern.SetValueArgument<int>(1, RayCount);
             RenKern.SetFloat(2, RenMesh);
-            RenKern.SetFloat(3, RenOut);
+            RenKern.Kern.SetValueArgument<int>(3, 2000);
+            RenKern.SetFloat(4, RenOut);
         }
         public override void Render()
         {

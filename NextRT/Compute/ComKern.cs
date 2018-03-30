@@ -15,8 +15,15 @@ namespace NextRT.Compute
         }
         public ComKern( ComProg prog,string name )
         {
-            Kern = prog.Prog.CreateKernel(name);
-            if (Kern == null)
+            try
+            {
+                Kern = prog.Prog.CreateKernel(name);
+            }
+            catch
+            {
+                Console.WriteLine(prog.Prog.GetBuildLog(Compute.Computer.scontext.Devices[0]));
+            }
+                if (Kern == null)
             {
                 Console.WriteLine("Kernel not created.");
                 while (true)

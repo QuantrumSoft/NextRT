@@ -25,7 +25,15 @@ namespace NextRT.Compute
             }
 
             Prog = new ComputeProgram(Computer.scontext, code);
-            Prog.Build(null, null, null, IntPtr.Zero);
+
+            try
+            {
+                Prog.Build(null, null, null, IntPtr.Zero);
+            }
+            catch
+            {
+                Console.WriteLine(Prog.GetBuildLog(Compute.Computer.scontext.Devices[0]));
+            }
 
 
 
