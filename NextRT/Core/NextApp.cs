@@ -129,10 +129,22 @@ namespace NextRT.Core
 
         }
         float y = 0;
+        int lastfps = 0;
+        int frames = 0;
+        int fps = 0;
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             y++;
-            
+            int ms = Environment.TickCount;
+            if (ms > lastfps)
+            {
+                fps = frames;
+                frames = 0;
+                lastfps = ms + 1000;
+                Console.WriteLine("fps:" + fps);
+
+            }
+            frames++;
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
             States.Last().Render();

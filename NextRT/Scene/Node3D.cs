@@ -77,6 +77,7 @@ namespace NextRT.Scene
 
         public void LookAt(Vector3 pos)
         {
+            
             _Rotation = Matrix4.LookAt(Vector3.Zero,( pos - _Position), Vector3.UnitY);
         }
 

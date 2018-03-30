@@ -18,7 +18,7 @@ namespace NextRT.Compute
             get;
             set;
         }
-        public ComBuffer(bool read,bool copy,int count,TYPE[] data)
+        public ComBuffer(bool read,bool copy,int count,ref TYPE[] data)
         {
             var cf = read ? ComputeMemoryFlags.ReadOnly : ComputeMemoryFlags.WriteOnly;
             if (copy)

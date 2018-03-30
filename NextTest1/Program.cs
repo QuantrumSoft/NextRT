@@ -55,11 +55,11 @@ namespace NextTest1
         }
         public override void Stop()
         {
-            base.Stop();
+  //          base.Stop();
         }
         public override void Render()
         {
-            base.Render();
+//            base.Render();
 
             Ren1.Render();
 
@@ -94,7 +94,7 @@ namespace NextTest1
             }
             //Cam1.SetRotate(0, y, 0);
         //    Console.WriteLine("State updating.");
-            base.Update();
+           // base.Update();
         }
 
     }
@@ -111,8 +111,8 @@ namespace NextTest1
         {
             NextApp.StartState = new State1();
             var app = new TestApp1();
-            
-            app.Run();
+
+            app.Run(30, 195);
 
         }
     }

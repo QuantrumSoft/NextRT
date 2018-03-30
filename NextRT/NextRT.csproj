@@ -69,6 +69,8 @@
     <Compile Include="Import\Importer.cs" />
     <Compile Include="Import\NodeImport.cs" />
     <Compile Include="Input\Input.cs" />
+    <Compile Include="Job\JobControl.cs" />
+    <Compile Include="Job\ThreadJob.cs" />
     <Compile Include="Map\AppMap.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Core\NextApp.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="PostProcessing\PostProcess.cs" />
     <Compile Include="PostProcessing\Process\PPInvert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render\RaysJob.cs" />
     <Compile Include="Render\RayTraceRenderer.cs" />
     <Compile Include="Render\SceneRenderer.cs" />
     <Compile Include="Render\SimpleRenderer.cs" />
@@ -95,6 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\NewFolder1\" />
+    <Folder Include="Job\NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\AssimpNet.3.3.2\build\AssimpNet.targets" Condition="Exists('..\packages\AssimpNet.3.3.2\build\AssimpNet.targets')" />

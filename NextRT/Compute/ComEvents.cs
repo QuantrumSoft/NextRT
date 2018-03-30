@@ -22,8 +22,9 @@ namespace NextRT.Compute
         public ComEvents()
         {
 
+
             List = new ComputeEventList();
-            Queue = new ComputeCommandQueue(Compute.Computer.scontext, Computer.scontext.Devices[0], ComputeCommandQueueFlags.None);
+            Queue = new ComputeCommandQueue(Compute.Computer.scontext, Computer.scontext.Devices[0], ComputeCommandQueueFlags.OutOfOrderExecution);
             
 
                  
@@ -31,16 +32,28 @@ namespace NextRT.Compute
 
         public void Run(ComKern kernal,int count)
         {
+
             Queue.Execute(kernal.Kern, null, new long[] { count }, null, List);
         }
-        public void ReadFloat(ComBuffer<float> buf, float[] to)
+        public void ReadFloat(ComBuffer<float> buf,ref float[] to)
         {
-            Queue.ReadFromBuffer<float>(buf.Buf, ref to,true, List);
+            Queue.ReadFromBuffer<float>(buf.Buf, ref to, true, null); ;
+        }
+        public void WriteFloat(ComBuffer<float> buf,ref float[] from)
+        {
+
+            //    Queue.WriteToBuffer(from, buf.Buf, false, List);
+            Queue.WriteToBuffer<float>(from, buf.Buf, false, List);
         }
         public void Wait()
         {
-            List.Wait();
+
+            //Queue.Wait(List);
             Queue.Finish();
+            //List.Wait();
+            //List.Clear();
+            //Queue.Finish();
+
         }
     }
 }

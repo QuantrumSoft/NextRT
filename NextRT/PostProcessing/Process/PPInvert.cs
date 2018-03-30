@@ -50,7 +50,7 @@ namespace NextRT.PostProcessing.Process
                 }
             }
 
-            screen = new Compute.ComBuffer<float>(true,true, fb.W * fb.H * 3, dat);
+            screen = new Compute.ComBuffer<float>(true,true, fb.W * fb.H * 3,ref dat);
             output = new Compute.ComBuffer<float>(false, false, fb.W * fb.H * 3);
 
             kern.SetFloat(0, screen);
@@ -66,7 +66,7 @@ namespace NextRT.PostProcessing.Process
 
             events.Run(kern, fb.W * fb.H);
 
-            events.ReadFloat(output, dat);
+            events.ReadFloat(output, ref dat);
 
 
             events.Wait();

@@ -72,6 +72,72 @@ namespace NextRT.Render
                 ProcessNode(nc);
             }
         }
+        public int ThreadCount = 8;
+
+        public Job.JobControl JC = new Job.JobControl();
+        public void SetupRays()
+        {
+            int rays = Core.Globals.WinWidth * Core.Globals.WinHeight;
+
+            int rPert = rays / ThreadCount;
+
+            var cam = Cams[0];
+
+            float bw = 200.0f;
+            float bh = 100.0f;
+
+            float mx, my, mz;
+
+            mx = cam.Position.X;
+            my = cam.Position.Y;
+            mz = cam.Position.Z;
+            float rx, ry, rz;
+            int ray = 0;
+            //float xf, yf;
+
+            float ax, ay;
+            int ri = 0;
+            RaysJob.RayData = RayData;
+            RaysJob.Cam = Cams[0];
+            
+            for (int i = 0; i < ThreadCount; i++)
+            {
+                RayHold rh = new RayHold();
+
+                rh.RayStart = ri;
+                rh.RayNum = rPert;
+
+                rh.aX = new float[rPert];
+                rh.aY = new float[rPert];
+
+                for (float rn = 0; rn < rPert; rn++)
+                {
+                    ry = (int)(ri + rn) / (int)Core.Globals.WinWidth;
+                    rx = (int)(ri+rn) - (int)((int)ry * Core.Globals.WinWidth);
+                    //C//onsole.WriteLine("x:"+rx+" ry:"+ry)
+                       // ;
+                    float xf = rx / (float)Core.Globals.WinWidth;
+                    float yf = ry / (float)Core.Globals.WinHeight;
+                    xf = -1 + xf * 2.0f;
+                    yf = -1 + yf * 2.0f;
+                    ax = (bw * xf);
+                    ay = (bh * yf);
+                   // Console.WriteLine("ax:" + ax + " ay:" + ay);
+                    rh.aX[(int)rn] = ax;
+                    rh.aY[(int)rn] = ay;
+                }
+
+
+                ri += rPert;
+                var rj = new RaysJob();
+                rj.Obj = rh as object;
+                JC.Add(rj);
+               
+
+            }
+
+            JC.Start();
+        }
         public void GenRays()
         {
             var cam = Cams[0];
@@ -116,7 +182,7 @@ namespace NextRT.Render
 
                 }
             }
-            RenRays = new ComBuffer<float>(true, true, RayCount * 6, RayData);
+            RenRays = new ComBuffer<float>(true, true, RayCount * 6,ref RayData);
         }   
         public void InitCL()
         {
@@ -133,10 +199,12 @@ namespace NextRT.Render
             MeshData = new List<float>();
             MeshData.Clear();
             ProcessScene();
-            GenRays();
-           
-            RenMesh = new ComBuffer<float>(true, true, MeshData.Count(), MeshData.ToArray());
-            
+            //   GenRays();
+            SetupRays();
+            float[] dat = MeshData.ToArray();
+
+            RenMesh = new ComBuffer<float>(true, true, MeshData.Count(),ref dat);
+            RenRays = new ComBuffer<float>(true, true, RayCount * 6,ref RayData);
   
             RenOut = new ComBuffer<float>(false, false, (Core.Globals.WinWidth * Core.Globals.WinHeight)*3);
 
@@ -148,46 +216,51 @@ namespace NextRT.Render
         }
         public override void Render()
         {
+
+            JC.Update();
+            //Console.WriteLine("Rounds:" + JC.Rounds);
             if (!initdone)
             {
                 initdone = true;
                 InitCL();
             }
-            GenRays();
-            RenRays = new ComBuffer<float>(true, true, RayCount * 6, RayData);
-            RenKern.SetFloat(0, RenRays);
+            //    GenRays();
+            //RenKern.Kern.
 
-            RenEvents.Run(RenKern, RayCount);
+            // RenRays.Buf.Dispose();
+            RenEvents.WriteFloat(RenRays, ref RaysJob.RayData);     
+  //         RenRays = new ComBuffer<float>(true, true, RayCount * 6, ref RayData);
+           RenKern.SetFloat(0, RenRays);
 
-            RenEvents.ReadFloat(RenOut, RenTex);
-
+           RenEvents.Run(RenKern, RayCount);
             RenEvents.Wait();
+            RenEvents.ReadFloat(RenOut, ref RenTex);
 
 
-            var fb = new Tex.Tex2D(Core.Globals.WinWidth, Core.Globals.WinHeight);
 
 
-            byte[] d2 = new byte[fb.H * fb.W * 3];
 
-            for (int y = 0; y < fb.H; y++)
+
+            if (Frame == null) 
             {
-                for (int x = 0; x < fb.W; x++)
-                {
-                    int loc = (y * fb.W * 3) + (x * 3);
-                    d2[loc] = (byte)(RenTex[loc] * 255.0f);
-                    d2[loc + 1] = (byte)(RenTex[loc + 1] * 255.0f);
-                    d2[loc + 2] = (byte)(RenTex[loc + 2] * 255.0f);
-                }
+              Frame = new Tex.TexGL(Core.Globals.WinWidth, Core.Globals.WinHeight,ref RenTex);
             }
-
-            fb.Data.Data = d2;
-
-            Tex.TexGL nt = new Tex.TexGL(fb);
-
+            else
+            {
+                    Frame.Upload(ref RenTex);
+            }
             Draw.Pen.Begin2D();
-            Draw.Pen.Image(0, 0, fb.W, fb.H, new Material.Color(1, 1, 1, 1), nt);
-
+            Draw.Pen.Image(0, 0, Core.Globals.WinWidth,Core.Globals.WinHeight, new Material.Color(1, 1, 1, 1), Frame);
+           // Console.WriteLine("Ren:");
         }
-
+        public Tex.TexGL Frame = null;
+    }
+    public class RayHold
+    {
+        public int RayStart = 0;
+        public int RayNum = 0;
+        public NodeCamera Cam;
+        public float bw, bh, rx, ry, rz, cx, cy, cz;
+        public float[] aX, aY;
     }
 }

@@ -55,6 +55,7 @@ namespace NextRT.Tex
     {
         public Tex2D IT = null;
         public int GLID = 0;
+        public int W, H;
         public TexGL(Tex2D origin)
         {
             IT = origin;
@@ -69,6 +70,13 @@ namespace NextRT.Tex
                 GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba, origin.W, origin.H, 0, PixelFormat.Rgba, PixelType.UnsignedByte, origin.Data.Data);
 
             }
+        }
+        public TexGL(int w,int h,ref float[] data)
+        {
+            GenGL();
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, w, h, 0, PixelFormat.Rgb, PixelType.Float, data);
+            W = w;
+            H = h;
         }
         public TexGL(int w,int h)
         {
@@ -102,7 +110,6 @@ namespace NextRT.Tex
         private void GenGL()
         {
             GLID = GL.GenTexture();
-            Console.WriteLine("GLtexID=" + GLID);
             GL.Enable(EnableCap.Texture2D);
             GL.BindTexture(TextureTarget.Texture2D, GLID);
             int tpi = (int)TextureWrapMode.Clamp;
@@ -117,6 +124,12 @@ namespace NextRT.Tex
             GL.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, ref tpi);
             tpi = (int)TextureMinFilter.Nearest;
             GL.TexParameterI(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, ref tpi);
+        }
+        public void Upload(ref float[] data)
+        {
+            Bind(0);
+            GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgb, W, H, 0, PixelFormat.Rgb, PixelType.Float, data);
+            Release(0);
         }
     }
 }
