@@ -233,7 +233,7 @@ namespace NextRT.Render
             RenKern.SetFloat(0, RenRays);
             RenKern.Kern.SetValueArgument<int>(1, RayCount);
             RenKern.SetFloat(2, RenMesh);
-            RenKern.Kern.SetValueArgument<int>(3, 2000);
+            RenKern.Kern.SetValueArgument<int>(3, MeshData.Count() / 6 / 3);
             RenKern.SetFloat(4, RenOut);
             RenKern.SetFloat(5, RenLights);
             RenKern.Kern.SetValueArgument<int>(6, Scene.Lights.Count);
