@@ -22,7 +22,9 @@ namespace NextRT.Render
         ComBuffer<float> RenRays;
         ComBuffer<float> RenOut;
         ComBuffer<float> RenMesh;
+        ComBuffer<float> RenLights;
         float[] RenTex;
+        float[] RenLightData;
         int MeshCount;
         int RayCount = 0;        
         bool initdone = false;
@@ -30,7 +32,23 @@ namespace NextRT.Render
         List<float> MeshData;
         void ProcessScene()
         {
+            RenLightData = new float[Scene.Lights.Count * 7];
+
             ProcessNode(Scene.Root);
+        }
+        void UpdateLights()
+        {
+            int ri = 0;
+            foreach(var l in Scene.Lights)
+            {
+                RenLightData[ri++] = l.Position.X;
+                RenLightData[ri++] = l.Position.Y;
+                RenLightData[ri++] = l.Position.Z;
+                RenLightData[ri++] = l.Diffuse.R;
+                RenLightData[ri++] = l.Diffuse.G;
+                RenLightData[ri++] = l.Diffuse.B;
+                RenLightData[ri++] = l.Range;
+            }
         }
         void ProcessNode(SceneNode n)
         {
@@ -83,8 +101,8 @@ namespace NextRT.Render
 
             var cam = Cams[0];
 
-            float bw = 140.0f;
-            float bh = 80.0f;
+            float bw = 200.0f;
+            float bh = 150.0f;
 
             float mx, my, mz;
 
@@ -208,11 +226,17 @@ namespace NextRT.Render
   
             RenOut = new ComBuffer<float>(false, false, (Core.Globals.WinWidth * Core.Globals.WinHeight)*3);
 
+            UpdateLights();
+
+            RenLights = new ComBuffer<float>(true, true, Scene.Lights.Count * 7, ref RenLightData);
+
             RenKern.SetFloat(0, RenRays);
             RenKern.Kern.SetValueArgument<int>(1, RayCount);
             RenKern.SetFloat(2, RenMesh);
             RenKern.Kern.SetValueArgument<int>(3, 2000);
             RenKern.SetFloat(4, RenOut);
+            RenKern.SetFloat(5, RenLights);
+            RenKern.Kern.SetValueArgument<int>(6, Scene.Lights.Count);
         }
         long rc = 0;
         public override void Render()

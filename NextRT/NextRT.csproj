@@ -71,6 +71,7 @@
     <Compile Include="Input\Input.cs" />
     <Compile Include="Job\JobControl.cs" />
     <Compile Include="Job\ThreadJob.cs" />
+    <Compile Include="Lighting\Light.cs" />
     <Compile Include="Map\AppMap.cs" />
     <Compile Include="Material\Color.cs" />
     <Compile Include="Core\NextApp.cs" />

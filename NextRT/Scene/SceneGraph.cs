@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NextRT;
+using NextRT.Lighting;
 namespace NextRT.Scene
 {
     public class SceneGraph
@@ -20,6 +21,19 @@ namespace NextRT.Scene
             }
         }
         private SceneNode _Root = new SceneNode();
+
+        public List<Light> Lights
+        {
+            get
+            {
+                return _Lights;
+            }
+            set
+            {
+                _Lights = value;
+            }
+        }
+        public List<Light> _Lights = new List<Light>();
 
         public int NodeCount
         {
@@ -43,7 +57,10 @@ namespace NextRT.Scene
             }
             
         }
-
+        public void Add(Light light)
+        {
+            _Lights.Add(light);
+        }
         public void Add(SceneNode node)
         {
 

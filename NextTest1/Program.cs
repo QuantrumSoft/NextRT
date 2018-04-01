@@ -10,6 +10,7 @@ using NextRT.Tex;
 using NextRT.Scene;
 using NextRT.Import;
 using NextRT.Render;
+using NextRT.Lighting;
 namespace NextTest1
 {
     public class State1 : AppState
@@ -19,6 +20,7 @@ namespace NextTest1
         public NodeEntity Ent1;
         public NodeCamera Cam1;
         public RayTraceRenderer Ren1;
+        public Light Light1;
         public override void Start()
         {
 
@@ -42,10 +44,13 @@ namespace NextTest1
             // Cam1.SetRotate(0, 0, 0);
             //    Ent1.Child.Add(Ent1.Child[0]);
             Ent1.SetRotate(0,0, 90);
-           
+
+            Light1 = new Light();
+
             var Mat1 = new NextRT.Material.Material();
             Mat1.Diffuse = new TexGL(new Tex2D("dat/test1.png"));
-
+            Scene1.Add(Light1);
+            Light1.SetPosition(0, 20, 80);
             foreach(var msh in Ent1.AllMeshes)
             {
                 msh.Mat = Mat1;
